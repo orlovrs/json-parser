@@ -5,7 +5,7 @@
       <b-form-textarea
         id="textarea"
         v-model="text"
-        placeholder="Enter something..."
+        placeholder="Поместите сюда JSON..."
         rows="8"
         max-rows="15"
         @input="processJson" />
