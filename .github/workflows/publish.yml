@@ -1,19 +1,14 @@
-name: Build and Deploy
+name: Publish
 on: [push]
 jobs:
-  build-and-deploy:
+  build_vue:
     runs-on: ubuntu-latest
+    name: Build Vue
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.1
-
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+      - uses: actions/checkout@v2
+      - id: Build-Vue
+        uses: xRealNeon/VuePagesAction@1.0.0
         with:
-          branch: gh-pages
-          folder: dist
+          username: 'orlovrs'
+          reponame: 'json-parser'
+          token: ${{ secrets.GITHUB_TOKEN }}
