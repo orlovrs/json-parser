@@ -1,19 +1,20 @@
-name: github pages
-
-on:
-  push:
-    branches:
-      - master
-
-jobs:
-  build_vue:
-    runs-on: ubuntu-latest
-    name: Build Vue
-    steps:
-      - uses: actions/checkout@v2
-      - id: Build-Vue
-        uses: xRealNeon/VuePagesAction@1.0.0
-        with:
-          username: 'orlovrs'
-          reponame: 'json-parser'
-          token: ${{ secrets.GITHUB_TOKEN }}
+name: Deploy to Github Pages
+  on:
+    push:
+      branches:
+        - master
+  jobs:
+    gh-pages-deploy:
+      name: Deploying to Github Pages
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '12'
+        - name: Install packages
+          run: npm i
+        - name: Set Creds
+          run: git config user.name "orlovrs" && git config user.email "pomah_89@inbox.ru"
+        - name: Deploy
+          run: npm run deploy
