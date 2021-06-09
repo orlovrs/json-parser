@@ -1,20 +1,11 @@
-name: Deploy to Github Pages
-on:
-  push:
-    branches:
-      - master
+name: CI
+on: push
 jobs:
-  gh-pages-deploy:
-    name: Deploying to Github Pages
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-      - name: Install packages
-        run: npm i
-      - name: Set Creds
-        run: git config user.name "orlovrs" && git config user.email "pomah_89@inbox.ru"
-      - name: Deploy
-        run: npm run deploy
+      - name: Install modules
+        run: yarn
+      - name: Run ESLint
+        run: eslint . --ext .js,.jsx,.ts,.tsx
